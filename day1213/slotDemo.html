@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <wang-v2>
+            <template v-slot:title>
+                {{article.title]}}
+            </template>
+            <template v-slot:author>
+                {{article.author}}
+            </template>
+            <template v-slot:Date>
+                {{article.Date}}
+            </template>
+            <template>
+                {{article.content}}
+            </template>
+        </wang-v2>
+
+    </div>
+    <script>
+        Vue.component('wang-v2',{
+            props:['heart'],
+            template:'<div>'+
+                         '<h1><slot name="title"></slot></h1>'+
+                         '<h2><slot name="author"></slot></h2>'+
+                         '<h3><slot name="Date"></slot></h3>'+
+                         '<p><slot></slot><p>'+
+                     '</div>'   
+        });
+
+
+
+        var app = new Vue({
+            el: "#app",
+            data: { 
+                article:
+                    {
+                        title:"Vue组件",
+                        author:"王",
+                        Date:"2019-12-13",
+                        content:"组件（Component）是 Vue.js 最强大的功能之一。组件可以扩展 HTML 元素，封装可重用的代码。在较高层面上，组件是自定义元素， Vue.js 的编译器为它添加特殊功能。在有些情况下，组件也可以是原生 HTML 元素的形式，以 is 特性扩展。"
+                    }
+            }
+        })
+    </script>
+
+</body>
+
+</html>

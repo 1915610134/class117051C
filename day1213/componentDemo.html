@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <h1>{{article.title}}</h1>
+        <h2>作者：{{article.author}}</h2>
+        <h3>{{article.publicDate}}</h3>
+        <p>
+            <img :src="article.imgSrc" />
+            <br/>
+            {{article.content}}
+        </p> -->
+
+        <!--heart是组件的一个属性，那么组件必须通过props声明这个属性-->
+        <!-- <wang v-bind:heart="article"></wang>
+        <wang v-bind:heart="article2"></wang> -->
+
+
+        <wang v-for="article in articleList" :key="article.title" :heart="article">
+    
+        </wang>
+
+    </div>
+    <script>
+        //定义wang这个自定义组件
+        //第一个参数是自定义组件的标签名称，第二个参数是定义该组件的运行规则对象
+        Vue.component('wang',{
+            props:['heart'],
+            //template中定义的是组件的模板，也就是html和{{}}以及vue指令的组合
+            //template必须要有根标签 例如<h1><h2>不合法，<div><h1><h2></div>合法
+            template:'<div>'+
+                        '<h1 style="color:red">{{heart.title}}</h1>'+
+                        '<h2>作者：{{heart.author}}</h2>'+
+                        '<h3>时间：{{heart.publishDate}}</h3>'+
+                        '<p>{{heart.content}}</p>'+
+                     '</div>'   
+        });
+
+
+
+        var app = new Vue({
+            el: "#app",
+            data: { 
+                // article:{
+                //     title:"Vue组件",
+                //     author:"王",
+                //     publicDate:"2019-12-13",
+                //     content:"组件（Component）是 Vue.js 最强大的功能之一。组件可以扩展 HTML 元素，封装可重用的代码。在较高层面上，组件是自定义元素， Vue.js 的编译器为它添加特殊功能。在有些情况下，组件也可以是原生 HTML 元素的形式，以 is 特性扩展。",
+                //     imgSrc:"https://img.shangyexinzhi.com/xztest-image/article/84264dfad2bc00433fb3339f7bfdca32.jpeg"
+                // },
+                // article2:{
+                //     title:"props传递数据",
+                //     author:"王",
+                //     publicDate:"2019-12-13",
+                //     content:"组件实例的作用域是孤立的。这意味着不能并且不应该在子组件的模板内直接引用父组件的数据。可以使用 props 把数据传给子组件。"
+                // },
+                articleList:[
+                    {
+                        title:"Vue组件",
+                        author:"王",
+                        publicDate:"2019-12-13",
+                        content:"组件（Component）是 Vue.js 最强大的功能之一。组件可以扩展 HTML 元素，封装可重用的代码。在较高层面上，组件是自定义元素， Vue.js 的编译器为它添加特殊功能。在有些情况下，组件也可以是原生 HTML 元素的形式，以 is 特性扩展。"
+                    },
+                    {
+                        title:"props传递数据",
+                        author:"王",
+                        publicDate:"2019-12-13",
+                        content:"组件实例的作用域是孤立的。这意味着不能并且不应该在子组件的模板内直接引用父组件的数据。可以使用 props 把数据传给子组件。"
+                    },
+                    {
+                        title:"数据",
+                        author:"王",
+                        publicDate:"2019-12-13",
+                        content:"组件"
+                    },
+                    {
+                        title:"传递数据",
+                        author:"王",
+                        publicDate:"2019-12-13",
+                        content:"组件实例"
+                    }
+                ]
+            }
+        })
+    </script>
+
+</body>
+
+</html>
